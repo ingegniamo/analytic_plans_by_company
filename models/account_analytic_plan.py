@@ -1,7 +1,7 @@
 from odoo import fields, models
 
 
-class InheritAccountAnalyticPlan(models.Model):
+class AccountAnalyticPlan(models.Model):
     _inherit = 'account.analytic.plan'
     _check_company_auto = True
 
@@ -14,3 +14,7 @@ class InheritAccountAnalyticPlan(models.Model):
         string='Company',  default
         =lambda self: self.env.company,
     )
+
+    def _get_all_plans(self):
+        plan_id, other_ids = super(AccountAnalyticPlan, self.sudo())._get_all_plans()
+        return plan_id, other_ids.filtered(lambda r: r.company_id in [self.env.company.id, False] + self.env.context.get('allowed_company_ids', []))
