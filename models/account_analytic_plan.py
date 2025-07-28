@@ -17,4 +17,4 @@ class AccountAnalyticPlan(models.Model):
 
     def _get_all_plans(self):
         plan_id, other_ids = super(AccountAnalyticPlan, self.sudo())._get_all_plans()
-        return plan_id, other_ids.filtered(lambda r: r.company_id in [self.env.company.id, False] + self.env.context.get('allowed_company_ids', []))
+        return plan_id, other_ids.filtered(lambda r: r.company_id.id in [self.env.company.id, False] + self.env.context.get('allowed_company_ids', []))
