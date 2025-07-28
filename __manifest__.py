@@ -1,7 +1,9 @@
 {
     'name': "Analytic Plans by Company",
-    'version': '1.0',
-    'depends': ['account'],
+    'version': '17.0.2.0.0',
+    'depends': [
+        'account'
+    ],
     'author': "Muhammad Wael",
     'category': 'Analytic Plan',
     'description': """
@@ -9,7 +11,8 @@
     """,
     
     'data': [
-        'views/inherit_account_analytic_plan.xml',
+        'security/account_security.xml',
+        'views/account_analytic_plan_view.xml',
     ],
     'images': [
         'static/description/icon.png'
