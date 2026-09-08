@@ -5,9 +5,10 @@ class AccountAnalyticPlan(models.Model):
     _inherit = 'account.analytic.plan'
     _check_company_auto = True
 
-    _sql_constraints = [
-        ('account_analytic_plan_constraints', 'unique(name, company_id)', 'The plan name must be unique per company!')
-    ]
+    _account_analytic_plan_constraints = models.Constraint(
+        'unique(name, company_id)',
+        'The plan name must be unique per company!',
+    )
 
     company_id = fields.Many2one(
         'res.company',
